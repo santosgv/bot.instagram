@@ -1,26 +1,29 @@
 import pickle
-
+from threading import *
 class Usuario:
-    def adiciona(self,user,password):
-        try:
-            arquivo = open("users.bin", "w+b")
-            self.usuarios ={'user':user,'password':password}
-            pickle.dump(self.usuarios, arquivo)
-            arquivo.close()
-            return print('Cadastrado')
-        except:
-            print('Erro no arquivo')
-
     def ler(self):
         try:
-            arquivo = open("users.bin", "rb")
-            users = pickle.load(arquivo)
-            print(users)
+
+            with open("Contas.txt", 'r', encoding='utf-8') as arq:
+                users = arq.readlines()
+                users = list(map(lambda x: x.replace('\n', ''), users))
+                users = list(map(lambda x: x.split(','), users))
+                i= 0
+                while (i < len(users)):
+                    print(users[i][0]+'login')
+                    print(users[i][1] + 'senha')
+                    i = i+1
+                    return  users[i][1]
+
+
+
 
         except:
             print("Problemas ler o arquivo.")
 
+    def threading(self):
+        t1 = Thread(target=self.logar)
+        t1.start()
 
 
-a=Usuario()
-a.ler()
+
