@@ -9,14 +9,14 @@ class Iniciar():
     def inicia(self):
         selection = var.get()
         self.bot = Instagem()
-        self.linkfoto()
-
+        
         if selection == 1:
             self.marcarAmigos()
         else:
+            self.bot.threading()
+            self.linkfoto()
             self.comenta()
-            a = Instagem()
-            a.threading()
+            
 
     def linkfoto(self):
         self.bot.Postagem(self.LinkInstagram.get())

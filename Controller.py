@@ -111,11 +111,6 @@ class Instagem():
             messagebox.showinfo('O script terminou', f' total de comentarios {a}')
             self.driver.close()
 
-
     def threading(self):
         t1 = Thread(target=self.logar())
         t1.start()
-
-
-#a=Instagem()
-#a.threading()
